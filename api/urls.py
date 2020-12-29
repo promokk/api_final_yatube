@@ -21,11 +21,11 @@ v1_router.register(r'follow', FollowViewSet, basename='FollowViewSet')
 urlpatterns = [
     path('', include(v1_router.urls)),
     path(
-        'api/v1/token/',
+        'token/',
         TokenObtainPairView.as_view(),
         name='token_obtain_pair'),
     path(
-        'api/v1/token/refresh/',
+        'token/refresh/',
         TokenRefreshView.as_view(),
         name='token_refresh'),
 ]

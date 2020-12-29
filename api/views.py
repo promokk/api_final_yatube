@@ -3,7 +3,7 @@ from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
-import django_filters.rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Post, Comment, Group, Follow
 from .serializers import PostSerializer, CommentSerializer, GroupSerializer
@@ -44,7 +44,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend,
+    filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter]
     filterset_fields = ["following"]
     search_fields = ["following__username", "user__username"]
