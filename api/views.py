@@ -39,11 +39,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [IsOwnerOrReadOnly]
+    http_method_names = ["get", "post"]
 
 
 class FollowViewSet(viewsets.ModelViewSet):
     serializer_class = FollowSerializer
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    http_method_names = ["get", "post"]
     filter_backends = [DjangoFilterBackend,
                        filters.SearchFilter]
     filterset_fields = ["following"]
